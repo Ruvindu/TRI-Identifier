@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>TRI Identifier</title>
+    <style>
+        .p-green {
+            color: #fff;
+            background-color: rgb(85, 198, 146);
+        }
+
+        .t-green {
+            color: rgb(85, 198, 146);
+        }
+
+        .font-sm {
+            font-size: small;
+        }
+
+
+        nav span {
+            letter-spacing: 1px;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .inputCamera {
+            width: 320px;
+            height: 240px;
+
+            /* transform: scale(1.2); */
+        }
+
+        #video {
+            border: 2px solid rgb(198, 198, 198);
+            padding: 3px;
+            /* transform: scale(1); */
+            border-radius: 3px;
+        }
+
+        .photgraph-outer {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .shutterbtn {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .shutterbtn button {
+            width: 150px;
+        }
+
+        .result-prev img {
+            border: 2px solid rgb(198, 198, 198);
+            transform: scale(1);
+            border-radius: 3px;
+        }
+
+        .container {
+            background: url('../static/imgs/theam-icon.png');
+            background-repeat: no-repeat;
+            background-size: 20%;
+            /* background-position: right; */
+            background-position-y: bottom;
+            background-position-x: right;
+            /* background-attachment: fixed; */
+
+        }
+
+        #canvas {
+            max-width: 320px;
+            max-height: 320px;
+        }
+
+        #captured_sample .modal-body {
+            /* width: auto; */
+            display: flex;
+            justify-content: space-around;
+        }
+
+
+        .bg-warning-light{
+            background: #fff6db;
+        }
+
+        .bg-primary-light{
+            background: #d9e8ff;
+        }
+
+        .bg-success-light{
+            background: #dbffee;
+        }
+
+        @media only screen and (max-width: 992px) {
+            .container {
+                background-size: 34%;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                background-size: 60%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark p-green">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1"><i class="fa fa-leaf" aria-hidden="true"></i> TRI Identifier
+            </span>
+        </div>
+    </nav>
+
+    <div class="container mt-md-5 mt-3">
+        <div class="row">
+            <div class="col-md-6">
+
+                <p class="font-sm">This web application provides facilitates distinguishing the most widely
+                    grown tea
+                    clones in Sri Lanka. Namely TRI 2023, TRI 2025, and TRI 2026. <b> Click on the instructions to learn
+                        more.</b>
+                </p>
+
+                <a class="btn btn-light p-green mt-2 " href="test.html">Instructions</a>
+
+                <div class="col-12 photgraph-outer mt-4 mb-5">
+                    <div>
+                        <div>
+                            <video id="video" width="320" height="320" autoplay></video>
+                        </div>
+                        <div class="shutterbtn mt-2">
+                            <!--  -->
+                            <button type="button" class="btn btn-light p-green" id="capture"><i class="fa fa-camera"
+                                    aria-hidden="true"></i>
+                                Capture</button>
+                            <button type="button" class="btn btn-light p-green"><i class="fa fa-upload"
+                                    aria-hidden="true"></i>
+                                Upload</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 ps">
+                <h6>Prediction result</h6>
+
+                <div class="px-3 w-100 mt-4">
+
+                    <div>
+                        <span>TRI 2023</span>
+                        <div class="mt-1 progress bg-warning-light">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width:0%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="progress_tri2023">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <span>TRI 2026</span>
+                        <div class="mt-1 progress bg-primary-light">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width:0%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="progress_tri2026">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <span>TRI 2025</span>
+                        <div class="mt-1 progress bg-success-light">
+                            <div class="progress-bar bg-success" role="progressbar" style="width:0%;"
+                                aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" id="progress_tri2025">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 mb-5">
+                        <div class="mb-3 result-prev">
+                            <img src="../static/imgs/IMG_20220605_123607.jpg" width="120px" height="120px" id="result_prev">
+                        </div>
+                        <span id="probability">Waiting for your input to predict the result...</span>
+                        <h4 class="mt-2" id="prediction_res">TRI XXXX</h4>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- display captured sample -->
+    <div class="modal fade " tabindex="-1" id="captured_sample">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <canvas id="canvas" width="720" height="720"></canvas>
+                    <input type="hidden" id="test_img">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-light p-green" id="predict"><i class="fa fa-refresh"
+                            aria-hidden="true"></i> Predict
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+    <script>
+        let camera_btn = document.querySelector("#start-camera");
+        let video = document.querySelector("#video");
+        let capture_btn = document.querySelector("#capture");
+        let canvas = document.querySelector("#canvas");
+        let predict_btn = document.querySelector("#predict");
+        var image_data_url = null;
+
+        window.addEventListener('load', async function () {
+
+            let usr_constraints = {
+                video: true,
+                audio: false,
+
+                video: {
+                    width: 720,
+                    height: 720,
+                    facingMode: {
+                        exact: "user"
+                    }
+                },
+            }
+
+            let env_constraints = {
+                video: true,
+                audio: false,
+
+                video: {
+                    width: 720,
+                    height: 720,
+                    facingMode: {
+                        exact: "environment"
+                    }
+                },
+            }
+
+
+            try {
+                let stream = await navigator.mediaDevices.getUserMedia(env_constraints);
+                video.srcObject = stream;
+            } catch (err) {
+
+                try {
+                    let stream = await navigator.mediaDevices.getUserMedia(usr_constraints);
+                    video.srcObject = stream;
+                } catch (err) {
+                    window.alert(err.message);
+                }
+
+            }
+
+        });
+
+
+        capture_btn.addEventListener('click', function () {
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            image_data_url = canvas.toDataURL('image/jpeg');
+
+            // data url of the image
+            document.getElementById('test_img').value = image_data_url;
+
+            $("#captured_sample").modal('show');
+        });
+
+
+        predict_btn.addEventListener('click', function () {
+
+            $.ajax({
+                url: "/predictbycapture",
+                method: "POST",
+                data: {
+                    'test_img': document.getElementById('test_img').value
+                },beforeSend : function () {
+
+                },
+                success: function (response) {
+                    console.log(response);
+                    let t23 = document.getElementById("progress_tri2023");
+                    let t26 = document.getElementById("progress_tri2026");
+                    let t25 = document.getElementById("progress_tri2025");
+                    let prediction_res = document.getElementById("prediction_res");
+                    let probability = document.getElementById("probability");
+                    let result_prev = document.getElementById("result_prev");
+
+                    t23.style.width = response.tri2023+'%';
+                    t23.innerHTML = response.tri2023+'%';
+
+                    t26.style.width = response.tri2026+'%';
+                    t26.innerHTML = response.tri2026+'%';
+
+                    t25.style.width = response.tri2025+'%';
+                    t25.innerHTML = response.tri2025+'%';
+
+                    result_prev.src = image_data_url;
+
+                    probability.innerHTML = `This clone has a ${response.max_val}% probability to be`;
+                    prediction_res.innerHTML = response.max_clone;
+
+                },
+                error: function (response) {
+                    alert(response)
+                },complete:function (){
+
+                    window.scrollTo(0, document.body.scrollHeight);
+                    $("#captured_sample").modal('hide');
+                }
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>
