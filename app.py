@@ -1,7 +1,7 @@
 from keras.models import load_model
 from PIL import Image, ImageOps
 import numpy as np
-import base64,operator
+import base64
 from io import BytesIO
 
 
