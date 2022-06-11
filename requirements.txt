@@ -14,5 +14,5 @@ termcolor==1.1.0
 wincertstore==0.2
 flask==2.0.3
 keras==2.4.3
-numpy==1.22.3
+numpy==1.19.0
 
