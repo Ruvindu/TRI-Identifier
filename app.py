@@ -9,7 +9,7 @@ from flask import Flask,request,render_template,jsonify
 
 app = Flask(__name__)
 # Load the model
-model = load_model('keras_model.h5')
+model = load_model('keras_model_1.2v.h5')
 
 @app.route('/')
 def index():
@@ -35,12 +35,13 @@ def predictbycapture():
 
     # Lables
     # 0 2023
-    # 1 2026
-    # 2 2025
+    # 1 2025
+    # 2 2026
+    # 3 BG
 
     tri2023 = round(prediction[0][0] * 100,2)
-    tri2026 = round(prediction[0][1] * 100,2)
-    tri2025 = round(prediction[0][2] * 100,2)
+    tri2025 = round(prediction[0][1] * 100,2)
+    tri2026 = round(prediction[0][2] * 100,2)
 
     if (tri2023 > tri2026) and (tri2023 > tri2025):
         max_val = tri2023
@@ -52,7 +53,23 @@ def predictbycapture():
         max_val = tri2025
         max_clone = "TRI 2025"
 
-    return jsonify(tri2023=tri2023,tri2026=tri2026,tri2025=tri2025,max_val=max_val,max_clone=max_clone)
+    # validation is there have any classes are equals
+    if(tri2023==tri2025) or (tri2023==tri2026):
+        valid = False
+    elif (tri2025 == tri2023) or (tri2025 == tri2026):
+        valid = False
+    elif (tri2026 == tri2023) or (tri2026 == tri2025):
+        valid = False
+    else:
+        valid = True
+
+    # validate max result has at least 51 confident level, If not it will be BG class
+    if (max_val<51):
+        valid = False
+    else:
+        valid = True
+
+    return jsonify(tri2023=tri2023,tri2026=tri2026,tri2025=tri2025,max_val=max_val,max_clone=max_clone,valid=valid)
 
 
 if __name__ == '__main__':

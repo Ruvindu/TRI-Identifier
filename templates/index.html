@@ -330,19 +330,37 @@
                     let probability = document.getElementById("probability");
                     let result_prev = document.getElementById("result_prev");
 
-                    t23.style.width = response.tri2023+'%';
-                    t23.innerHTML = response.tri2023+'%';
+                    if(response.valid){
+                        t23.style.width = response.tri2023+'%';
+                        t23.innerHTML = response.tri2023+'%';
 
-                    t26.style.width = response.tri2026+'%';
-                    t26.innerHTML = response.tri2026+'%';
+                        t26.style.width = response.tri2026+'%';
+                        t26.innerHTML = response.tri2026+'%';
 
-                    t25.style.width = response.tri2025+'%';
-                    t25.innerHTML = response.tri2025+'%';
+                        t25.style.width = response.tri2025+'%';
+                        t25.innerHTML = response.tri2025+'%';
 
-                    result_prev.src = image_data_url;
+                        result_prev.src = image_data_url;
 
-                    probability.innerHTML = `This clone has a ${response.max_val}% probability to be`;
-                    prediction_res.innerHTML = response.max_clone;
+                        probability.innerHTML = `This clone has a ${response.max_val}% probability to be`;
+                        prediction_res.innerHTML = response.max_clone;
+                    }else{
+                        t23.style.width = '0%';
+                        t23.innerHTML = '0%';
+
+                        t26.style.width = '0%';
+                        t26.innerHTML = '0%';
+
+                        t25.style.width = '0%';
+                        t25.innerHTML = '0%';
+
+                        result_prev.src = image_data_url;
+
+                        probability.innerHTML = `Invalid input, try with different image.`;
+                        prediction_res.innerHTML = "";
+                    }
+
+
 
                     navigator.vibrate(47);
                 },
@@ -358,6 +376,9 @@
 
 
         });
+
+
+
     </script>
 </body>
 
