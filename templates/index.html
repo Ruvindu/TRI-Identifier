@@ -8,13 +8,15 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"#}
-{#        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="#}
-{#        crossorigin="anonymous" referrerpolicy="no-referrer" />#}
+    {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"#}
+    {#        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="#}
+    {#        crossorigin="anonymous" referrerpolicy="no-referrer" />#}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <title>TRI Identifier</title>
     <style type="text/css">
@@ -22,6 +24,10 @@
         .p-green {
             color: #fff;
             background-color: rgb(85, 198, 146);
+        }
+
+        .input-btns {
+            min-width: 155px;
         }
 
         .t-green {
@@ -96,15 +102,15 @@
         }
 
 
-        .bg-warning-light{
+        .bg-warning-light {
             background: #fff6db;
         }
 
-        .bg-primary-light{
+        .bg-primary-light {
             background: #d9e8ff;
         }
 
-        .bg-success-light{
+        .bg-success-light {
             background: #dbffee;
         }
 
@@ -126,260 +132,293 @@
 
 <body>
 
-    <nav class="navbar navbar-dark p-green">
-        <div class="container-fluid">
+<nav class="navbar navbar-dark p-green">
+    <div class="container-fluid">
             <span class="navbar-brand mb-0 h1"><i class="fas fa-leaf"></i> TRI Identifier
             </span>
+    </div>
+</nav>
+
+<div class="container mt-md-5 mt-3">
+    <div class="row">
+        <div class="col-md-6">
+
+            <p class="font-sm">This web application provides facilitates distinguishing the most widely
+                grown tea
+                clones in Sri Lanka. Namely TRI 2023, TRI 2025, and TRI 2026. <b> Click on the instructions to learn
+                    more.</b>
+            </p>
+
+            <a class="btn btn-light p-green mt-2 " href="test.html">Instructions</a>
+
+            <div class="col-12 photgraph-outer mt-4 mb-5">
+                <div>
+                    <div>
+                        <video id="video" width="320" height="320" autoplay></video>
+                    </div>
+                    <div class="shutterbtn mt-2">
+                        <!--  -->
+                        <button type="button" class="btn btn-light p-green input-btns" id="capture"><i
+                                class="fas fa-camera"></i>
+                            Capture
+                        </button>
+                        {#                            <button type="button" class="btn btn-light p-green" id="upload"><i class="fas fa-upload"></i>#}
+                        {#                                Upload</button>#}
+
+                        <label for="upload" class="btn btn-light p-green input-btns"><i class="fas fa-upload"></i>
+                            Upload</label>
+                        <input type="file" id="upload" hidden/>
+
+
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </nav>
 
-    <div class="container mt-md-5 mt-3">
-        <div class="row">
-            <div class="col-md-6">
+        <div class="col-md-6 ps">
+            <h6>Prediction result</h6>
 
-                <p class="font-sm">This web application provides facilitates distinguishing the most widely
-                    grown tea
-                    clones in Sri Lanka. Namely TRI 2023, TRI 2025, and TRI 2026. <b> Click on the instructions to learn
-                        more.</b>
-                </p>
+            <div class="px-3 w-100 mt-4">
 
-                <a class="btn btn-light p-green mt-2 " href="test.html">Instructions</a>
-
-                <div class="col-12 photgraph-outer mt-4 mb-5">
-                    <div>
-                        <div>
-                            <video id="video" width="320" height="320" autoplay></video>
+                <div>
+                    <span>TRI 2023</span>
+                    <div class="mt-1 progress bg-warning-light">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width:0%;"
+                             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="progress_tri2023">
                         </div>
-                        <div class="shutterbtn mt-2">
-                            <!--  -->
-                            <button type="button" class="btn btn-light p-green" id="capture"><i class="fas fa-camera"></i>
-                                Capture</button>
-                            <button type="button" class="btn btn-light p-green"><i class="fas fa-upload"></i>
-                                Upload</button>
-                        </div>
-
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6 ps">
-                <h6>Prediction result</h6>
-
-                <div class="px-3 w-100 mt-4">
-
-                    <div>
-                        <span>TRI 2023</span>
-                        <div class="mt-1 progress bg-warning-light">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width:0%;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="progress_tri2023">
-                            </div>
+                <div class="mt-2">
+                    <span>TRI 2026</span>
+                    <div class="mt-1 progress bg-primary-light">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width:0%;"
+                             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="progress_tri2026">
                         </div>
                     </div>
-
-                    <div class="mt-2">
-                        <span>TRI 2026</span>
-                        <div class="mt-1 progress bg-primary-light">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width:0%;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="progress_tri2026">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-2">
-                        <span>TRI 2025</span>
-                        <div class="mt-1 progress bg-success-light">
-                            <div class="progress-bar bg-success" role="progressbar" style="width:0%;"
-                                aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" id="progress_tri2025">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 mb-5">
-                        <div class="mb-3 result-prev">
-                            <img src="/static/imgs/tri-example.jpg" width="120px" height="120px" id="result_prev">
-                        </div>
-                        <span id="probability">Waiting for your input to predict the result...</span>
-                        <h4 class="mt-2" id="prediction_res">TRI _ _ _ _</h4>
-                    </div>
-
                 </div>
-            </div>
 
+                <div class="mt-2">
+                    <span>TRI 2025</span>
+                    <div class="mt-1 progress bg-success-light">
+                        <div class="progress-bar bg-success" role="progressbar" style="width:0%;"
+                             aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" id="progress_tri2025">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-5">
+                    <div class="mb-3 result-prev">
+                        <img src="/static/imgs/tri-example.jpg" width="120px" height="120px" id="result_prev">
+                    </div>
+                    <span id="probability">Waiting for your input to predict the result...</span>
+                    <h4 class="mt-2" id="prediction_res">TRI _ _ _ _</h4>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- display captured sample -->
+<div class="modal fade " tabindex="-1" id="captured_sample">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <canvas id="canvas" width="720" height="720"></canvas>
+                <input type="hidden" id="test_img">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-light p-green" id="predict">Predict
+                </button>
+            </div>
         </div>
     </div>
-
-    <!-- display captured sample -->
-    <div class="modal fade " tabindex="-1" id="captured_sample">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Preview</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <canvas id="canvas" width="720" height="720"></canvas>
-                    <input type="hidden" id="test_img">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-light p-green" id="predict">Predict
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
 
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+</script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 
+<script>
 
-    <script>
+    $(document).ready(function () {
+        $(".loader").fadeOut();
+    });
 
-        $( document ).ready(function() {
-            $(".loader").fadeOut();
-        });
+    let camera_btn = document.querySelector("#start-camera");
+    let video = document.querySelector("#video");
+    let capture_btn = document.querySelector("#capture");
+    let upload_btn = document.querySelector("#upload");
+    let canvas = document.querySelector("#canvas");
+    let predict_btn = document.querySelector("#predict");
+    var image_data_url = null;
 
-        let camera_btn = document.querySelector("#start-camera");
-        let video = document.querySelector("#video");
-        let capture_btn = document.querySelector("#capture");
-        let canvas = document.querySelector("#canvas");
-        let predict_btn = document.querySelector("#predict");
-        var image_data_url = null;
+    window.addEventListener('load', async function () {
 
-        window.addEventListener('load', async function () {
+        let usr_constraints = {
+            video: true,
+            audio: false,
 
-            let usr_constraints = {
-                video: true,
-                audio: false,
+            video: {
+                width: 720,
+                height: 720,
+                facingMode: {
+                    exact: "user"
+                }
+            },
+        }
 
-                video: {
-                    width: 720,
-                    height: 720,
-                    facingMode: {
-                        exact: "user"
-                    }
-                },
-            }
+        let env_constraints = {
+            video: true,
+            audio: false,
 
-            let env_constraints = {
-                video: true,
-                audio: false,
+            video: {
+                width: 720,
+                height: 720,
+                facingMode: {
+                    exact: "environment"
+                }
+            },
+        }
 
-                video: {
-                    width: 720,
-                    height: 720,
-                    facingMode: {
-                        exact: "environment"
-                    }
-                },
-            }
 
+        try {
+            let stream = await navigator.mediaDevices.getUserMedia(env_constraints);
+            video.srcObject = stream;
+        } catch (err) {
 
             try {
-                let stream = await navigator.mediaDevices.getUserMedia(env_constraints);
+                let stream = await navigator.mediaDevices.getUserMedia(usr_constraints);
                 video.srcObject = stream;
             } catch (err) {
-
-                try {
-                    let stream = await navigator.mediaDevices.getUserMedia(usr_constraints);
-                    video.srcObject = stream;
-                } catch (err) {
-                    window.alert(err.message);
-                }
-
+                window.alert(err.message);
             }
 
-        });
+        }
+
+    });
+
+    //when click capture button
+    capture_btn.addEventListener('click', function () {
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        image_data_url = canvas.toDataURL('image/jpeg');
+
+        // data url of the image
+        document.getElementById('test_img').value = image_data_url;
+
+        $("#captured_sample").modal('show');
+    });
 
 
-        capture_btn.addEventListener('click', function () {
-            canvas.getContext('2d').drawImage(video, 0, 0);
-            image_data_url = canvas.toDataURL('image/jpeg');
+    //when click upload button
+    upload_btn.onchange = function (e) {
+        const img = new Image();
+        img.onload = draw;
+        img.onerror = failed;
+        img.src = URL.createObjectURL(this.files[0]);
 
-            // data url of the image
-            document.getElementById('test_img').value = image_data_url;
+    };
 
-            $("#captured_sample").modal('show');
-        });
+    // Preview uploaded image
+    function draw() {
+        canvas.getContext('2d').drawImage(this, 0, 0, 720, 720);
+        image_data_url = canvas.toDataURL('image/jpeg');
 
+        // Data url of the image
+        document.getElementById('test_img').value = image_data_url;
+        $("#captured_sample").modal('show');
+    }
 
-        predict_btn.addEventListener('click', function () {
-
-            $.ajax({
-                url: "/predictbycapture",
-                method: "POST",
-                data: {
-                    'test_img': document.getElementById('test_img').value
-                },beforeSend : function () {
-                     document.getElementById('predict').innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Predict";
-                },
-                success: function (response) {
-                    console.log(response);
-                    let t23 = document.getElementById("progress_tri2023");
-                    let t26 = document.getElementById("progress_tri2026");
-                    let t25 = document.getElementById("progress_tri2025");
-                    let prediction_res = document.getElementById("prediction_res");
-                    let probability = document.getElementById("probability");
-                    let result_prev = document.getElementById("result_prev");
-
-                    if(response.valid){
-                        t23.style.width = response.tri2023+'%';
-                        t23.innerHTML = response.tri2023+'%';
-
-                        t26.style.width = response.tri2026+'%';
-                        t26.innerHTML = response.tri2026+'%';
-
-                        t25.style.width = response.tri2025+'%';
-                        t25.innerHTML = response.tri2025+'%';
-
-                        result_prev.src = image_data_url;
-
-                        probability.innerHTML = `This clone has a ${response.max_val}% probability to be`;
-                        prediction_res.innerHTML = response.max_clone;
-                    }else{
-                        t23.style.width = '0%';
-                        t23.innerHTML = '0%';
-
-                        t26.style.width = '0%';
-                        t26.innerHTML = '0%';
-
-                        t25.style.width = '0%';
-                        t25.innerHTML = '0%';
-
-                        result_prev.src = image_data_url;
-
-                        probability.innerHTML = `Invalid input, try with different image.`;
-                        prediction_res.innerHTML = "";
-                    }
+    // Upload image fail action
+    function failed() {
+        console.error("The provided file couldn't be loaded as an Image media.");
+    }
 
 
 
-                    navigator.vibrate(47);
-                },
-                error: function (response) {
-                    alert(response);
-                    document.getElementById('predict').innerHTML = "Predict";
-                },complete:function (){
-                    document.getElementById('predict').innerHTML = "Predict";
-                    window.scrollTo(0, document.body.scrollHeight);
-                    $("#captured_sample").modal('hide');
+
+    predict_btn.addEventListener('click', function () {
+
+        $.ajax({
+            url: "/predictbycapture",
+            method: "POST",
+            data: {
+                'test_img': document.getElementById('test_img').value
+            }, beforeSend: function () {
+                document.getElementById('predict').innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Predict";
+            },
+            success: function (response) {
+                console.log(response);
+                let t23 = document.getElementById("progress_tri2023");
+                let t26 = document.getElementById("progress_tri2026");
+                let t25 = document.getElementById("progress_tri2025");
+                let prediction_res = document.getElementById("prediction_res");
+                let probability = document.getElementById("probability");
+                let result_prev = document.getElementById("result_prev");
+
+                if (response.valid) {
+                    t23.style.width = response.tri2023 + '%';
+                    t23.innerHTML = response.tri2023 + '%';
+
+                    t26.style.width = response.tri2026 + '%';
+                    t26.innerHTML = response.tri2026 + '%';
+
+                    t25.style.width = response.tri2025 + '%';
+                    t25.innerHTML = response.tri2025 + '%';
+
+                    result_prev.src = image_data_url;
+
+                    probability.innerHTML = `This clone has a ${response.max_val}% probability to be`;
+                    prediction_res.innerHTML = response.max_clone;
+                } else {
+                    t23.style.width = '0%';
+                    t23.innerHTML = '0%';
+
+                    t26.style.width = '0%';
+                    t26.innerHTML = '0%';
+
+                    t25.style.width = '0%';
+                    t25.innerHTML = '0%';
+
+                    result_prev.src = image_data_url;
+
+                    probability.innerHTML = `Invalid input, try with different image.`;
+                    prediction_res.innerHTML = "";
                 }
-            });
 
 
+                navigator.vibrate(47);
+            },
+            error: function (response) {
+                alert(response);
+                document.getElementById('predict').innerHTML = "Predict";
+            }, complete: function () {
+                document.getElementById('predict').innerHTML = "Predict";
+                window.scrollTo(0, document.body.scrollHeight);
+                $("#captured_sample").modal('hide');
+            }
         });
 
 
+    });
 
-    </script>
+
+
+</script>
 </body>
 
 </html>
