@@ -64,7 +64,6 @@ def predictbycapture():
         valid = True
 
     # validate max result has at least 51 confident level, If not it will be BG class
-    
     if (max_val<60):
         valid = False
     else:
